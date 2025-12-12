@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    :root {
+        /* Coffee-inspired color palette */
+        --background: 30 25% 97%;
+        --foreground: 25 30% 12%;
+
+        --card: 30 20% 94%;
+        --card-foreground: 25 30% 12%;
+
+        --popover: 30 25% 97%;
+        --popover-foreground: 25 30% 12%;
+
+        /* Espresso brown primary */
+        --primary: 25 35% 22%;
+        --primary-foreground: 30 25% 97%;
+
+        /* Cream secondary */
+        --secondary: 35 30% 88%;
+        --secondary-foreground: 25 35% 22%;
+
+        /* Warm muted tones */
+        --muted: 30 15% 90%;
+        --muted-foreground: 25 15% 45%;
+
+        /* Caramel accent */
+        --accent: 32 80% 50%;
+        --accent-foreground: 30 25% 97%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 30 20% 85%;
+        --input: 30 20% 85%;
+        --ring: 32 80% 50%;
+
+        --radius: 0.75rem;
+
+        /* Custom coffee theme tokens */
+        --espresso: 25 35% 18%;
+        --latte: 35 25% 92%;
+        --caramel: 32 80% 50%;
+        --cream: 40 30% 96%;
+        --mocha: 25 40% 28%;
+
+        /* Gradients */
+        --gradient-hero: linear-gradient(135deg, hsl(30 25% 97%) 0%, hsl(35 30% 88%) 100%);
+        --gradient-card: linear-gradient(180deg, hsl(30 20% 94%) 0%, hsl(35 25% 90%) 100%);
+        --gradient-accent: linear-gradient(135deg, hsl(32 80% 50%) 0%, hsl(25 70% 45%) 100%);
+
+        /* Shadows */
+        --shadow-soft: 0 4px 20px -4px hsl(25 35% 22% / 0.1);
+        --shadow-card: 0 8px 30px -8px hsl(25 35% 22% / 0.15);
+        --shadow-glow: 0 0 40px hsl(32 80% 50% / 0.2);
+
+        --sidebar-background: 0 0% 98%;
+        --sidebar-foreground: 240 5.3% 26.1%;
+        --sidebar-primary: 240 5.9% 10%;
+        --sidebar-primary-foreground: 0 0% 98%;
+        --sidebar-accent: 240 4.8% 95.9%;
+        --sidebar-accent-foreground: 240 5.9% 10%;
+        --sidebar-border: 220 13% 91%;
+        --sidebar-ring: 217.2 91.2% 59.8%;
+    }
+
+    .dark {
+        /* Dark roast theme */
+        --background: 25 30% 8%;
+        --foreground: 35 20% 92%;
+
+        --card: 25 25% 12%;
+        --card-foreground: 35 20% 92%;
+
+        --popover: 25 30% 8%;
+        --popover-foreground: 35 20% 92%;
+
+        --primary: 35 25% 92%;
+        --primary-foreground: 25 30% 8%;
+
+        --secondary: 25 20% 18%;
+        --secondary-foreground: 35 20% 92%;
+
+        --muted: 25 15% 20%;
+        --muted-foreground: 30 15% 60%;
+
+        --accent: 32 80% 55%;
+        --accent-foreground: 25 30% 8%;
+
+        --border: 25 20% 20%;
+        --input: 25 20% 20%;
+        --ring: 32 80% 55%;
+
+        --espresso: 35 25% 92%;
+        --latte: 25 25% 15%;
+        --caramel: 32 80% 55%;
+        --cream: 25 20% 12%;
+        --mocha: 35 20% 85%;
+
+        --gradient-hero: linear-gradient(135deg, hsl(25 30% 8%) 0%, hsl(25 25% 12%) 100%);
+        --gradient-card: linear-gradient(180deg, hsl(25 25% 12%) 0%, hsl(25 20% 15%) 100%);
+        --gradient-accent: linear-gradient(135deg, hsl(32 80% 55%) 0%, hsl(25 70% 50%) 100%);
+
+        --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+        --shadow-card: 0 8px 30px -8px hsl(0 0% 0% / 0.4);
+        --shadow-glow: 0 0 40px hsl(32 80% 55% / 0.3);
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
+    }
+}
+
+@layer components {
+    .font-display {
+        font-family: 'Playfair Display', serif;
+    }
+
+    .font-mono-code {
+        font-family: 'JetBrains Mono', monospace;
+    }
+
+    .gradient-hero {
+        background: var(--gradient-hero);
+    }
+
+    .gradient-card {
+        background: var(--gradient-card);
+    }
+
+    .gradient-accent {
+        background: var(--gradient-accent);
+    }
+
+    .shadow-soft {
+        box-shadow: var(--shadow-soft);
+    }
+
+    .shadow-card {
+        box-shadow: var(--shadow-card);
+    }
+
+    .shadow-glow {
+        box-shadow: var(--shadow-glow);
+    }
+
+    .text-gradient {
+        @apply bg-clip-text text-transparent;
+        background-image: var(--gradient-accent);
+    }
+
+    .code-bracket::before {
+        content: '{ ';
+        @apply text-accent opacity-60;
+    }
+
+    .code-bracket::after {
+        content: ' }';
+        @apply text-accent opacity-60;
+    }
+}
+
+@layer utilities {
+    .animation-delay-200 {
+        animation-delay: 200ms;
+    }
+
+    .animation-delay-400 {
+        animation-delay: 400ms;
+    }
+
+    .animation-delay-600 {
+        animation-delay: 600ms;
+    }
+}
