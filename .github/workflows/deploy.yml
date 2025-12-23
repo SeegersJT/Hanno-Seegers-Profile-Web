@@ -3,7 +3,7 @@ name: 🚀 Deploy React App to CPanel
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-deploy:
@@ -43,7 +43,7 @@ jobs:
           name: 🧱 dist-folder
           path: dist
 
-      - name: 🚚 Deploy via FTP to KonsoleH
+      - name: 🚚 Deploy via FTP to CPanel
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -56,4 +56,4 @@ jobs:
           port: 21
 
       - name: ✅ Deployment Complete!
-        run: echo "🎉 Deployment to KonsoleH successful!"
+        run: echo "🎉 Deployment to CPanel successful!"
