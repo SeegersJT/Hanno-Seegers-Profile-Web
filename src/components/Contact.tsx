@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send, Mail, MapPin, Coffee } from "lucide-react";
+import { Send, Mail, MapPin, Coffee, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -104,6 +104,22 @@ export const Contact = () => {
                     <p className="text-foreground font-medium">
                       Open to opportunities
                     </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                    <Smartphone className="w-5 h-5 text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Contact Me</p>
+                    <a
+                      href="/assets/contact.vcf"
+                      download
+                      className="text-foreground font-medium hover:text-accent transition-colors"
+                    >
+                      Add me to contacts
+                    </a>
                   </div>
                 </div>
               </div>

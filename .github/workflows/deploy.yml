@@ -1,0 +1,59 @@
+name: 🚀 Deploy React App to KonsoleH
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: 🌙 Build & Deploy to Production
+
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js (Latest LTS)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: 📦 Restore npm cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: 📥 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build React App
+        env:
+          VITE_EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.EMAILJS_PUBLIC_KEY }}
+        run: npm run build
+
+      - name: 📤 Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: 🧱 dist-folder
+          path: dist
+
+      - name: 🚚 Deploy via FTP to KonsoleH
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
+          protocol: ftp
+          dangerous-clean-slate: true
+          port: 21
+
+      - name: ✅ Deployment Complete!
+        run: echo "🎉 Deployment to KonsoleH successful!"
