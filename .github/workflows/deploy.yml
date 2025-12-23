@@ -1,9 +1,9 @@
-name: 🚀 Deploy React App to KonsoleH
+name: 🚀 Deploy React App to CPanel
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-deploy:
